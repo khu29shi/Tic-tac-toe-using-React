@@ -35,21 +35,23 @@ function Grid({ numberofCards }) {
         {
           winner && (
             <>
-              <h1>Winner: {winner}</h1>
-              <button onClick={reset}>Reset game</button>
+              <h1 className="turn">
+                {winner === "Draw" ? "It's a Draw!" : `Winner: ${winner}`};
+              </h1>
+              <button className="reset" onClick={reset}>Reset game</button>
             </>
           )
         }
-        <h2>Current turn: {(turn) ? "X": "O"}</h2>
+        <h2 className="turn">Current turn: {turn ? "X": "O"}</h2>
         <div className="grid">
           {
-            board.map((item, index) => {
-              return <Card gameEnd={(winner) ? true : false} key={index} player={item} onPlay={play} index={index} />
-          })
+            board.map((el, idx) => (
+             <Card gameEnd={!!winner} key={idx} player={el} onPlay={play} index={idx} />
+            ))
           }
         </div>
     </div>
-  )
+  );
 }
 
-export default Grid
+export default Grid;

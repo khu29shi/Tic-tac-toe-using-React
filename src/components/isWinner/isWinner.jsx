@@ -17,7 +17,9 @@ const isWinner = (board, symbol) => {
     //diagonal
     if(board[0] === board[4] && board[4] === board[8] && board[4] === symbol) return symbol;
     if(board[2] === board[4] && board[4] === board[6] && board[4] === symbol) return symbol;
-    
+  
+    // Check for a draw
+    if(board.every(cell => cell === "O" || cell === "X")) return "Draw";
   return "";
 }
 
